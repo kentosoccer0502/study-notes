@@ -3,19 +3,21 @@
 # エラー時に停止
 set -e
 
-# 今日の日付と曜日（日本語に変換も可能）
+# 今日の日付と曜日
 TODAY=$(date '+%Y-%m-%d')
-WEEKDAY=$(date '+%A')  # 例: Monday, Tuesday
+WEEKDAY=$(date '+%A')  # 例: Monday
 YEAR=$(date '+%Y')
 MONTH=$(date '+%m')
 
 # パス設定
-TARGET_DIR="journal/${YEAR}/${MONTH}"
-TARGET_FILE="${TARGET_DIR}/${TODAY}.md"
+BASE_DIR="journal/${YEAR}/${MONTH}"
+TARGET_FILE="${BASE_DIR}/${TODAY}.md"
 TEMPLATE_FILE="templates/daily-template.md"
+PRACTICE_DIR="${BASE_DIR}/practice_codes"
 
-# ディレクトリ作成
-mkdir -p "${TARGET_DIR}"
+# ディレクトリ作成（ノート用 + practice_codes）
+mkdir -p "${BASE_DIR}"
+mkdir -p "${PRACTICE_DIR}"
 
 # ファイルがなければテンプレートから作成
 if [[ ! -f "${TARGET_FILE}" ]]; then
@@ -29,3 +31,6 @@ if [[ ! -f "${TARGET_FILE}" ]]; then
 else
     echo "⚠️  既に存在: ${TARGET_FILE}"
 fi
+
+# practice_codes フォルダがあることを通知
+echo "📁 確認: ${PRACTICE_DIR} ディレクトリあり"
