@@ -14,10 +14,12 @@ BASE_DIR="journal/${YEAR}/${MONTH}"
 TARGET_FILE="${BASE_DIR}/${TODAY}.md"
 TEMPLATE_FILE="templates/daily-template.md"
 PRACTICE_DIR="${BASE_DIR}/practice_codes"
+AI_CODE_DIR="${BASE_DIR}/ai_code_review"
 
 # ディレクトリ作成（ノート用 + practice_codes）
 mkdir -p "${BASE_DIR}"
 mkdir -p "${PRACTICE_DIR}"
+mkdir -p "${AI_CODE_DIR}"
 
 # ファイルがなければテンプレートから作成
 if [[ ! -f "${TARGET_FILE}" ]]; then
@@ -34,3 +36,5 @@ fi
 
 # practice_codes フォルダがあることを通知
 echo "📁 確認: ${PRACTICE_DIR} ディレクトリあり"
+# AIコードレビュー用ディレクトリがあることを通知
+echo "📁 確認: ${AI_CODE_DIR} ディレクトリあり"
