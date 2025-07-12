@@ -49,3 +49,65 @@ function recursiveDigitsAdded(digits) {
 ```
 
 このコードは既に非常に良く書かれており、特に大きな修正は必要ありません。全体的に、コードはシンプルで明確です。
+
+---
+
+以下はあなたの[コード](/journal/2025/07/practice_codes/recursiveDigitsAddv2.js)に対するレビューです。
+
+## 良い点
+
+- 再帰の使用: 再帰を使って問題を解決しており、問題の要件に合致しています。
+
+- シンプルなロジック: 各桁を分解して合計するロジックが明確で、読みやすいです。
+
+## 改善点
+
+- 変数名の改善: currentTotal と finalTotal はそれぞれの役割を明確にするために、もう少し説明的な名前にすると良いでしょう。例えば、currentSum や totalSum など。
+
+- コードのコメント: コードの流れを説明するコメントがあると、他の人がコードを理解しやすくなります。
+
+- ベースケースの明確化: 再帰のベースケースが少し複雑に見えるので、もう少し簡潔にできるかもしれません。
+
+## 以下は改善されたコード例です：
+
+```javascript
+function helper(digits, currentSum, totalSum) {
+  if (digits < 10) {
+    currentSum += digits;
+    if (currentSum < 10) {
+      return currentSum + totalSum;
+    }
+    return helper(currentSum, 0, currentSum + totalSum);
+  }
+  return helper(Math.floor(digits / 10), (digits % 10) + currentSum, totalSum);
+}
+
+function recursiveDigitsAdded(digits) {
+  return helper(digits, 0, 0);
+}
+```
+
+### コメントの追加例
+
+```javascript
+function helper(digits, currentSum, totalSum) {
+  // ベースケース: digitsが1桁の場合
+  if (digits < 10) {
+    currentSum += digits;
+    // currentSumが1桁になった場合
+    if (currentSum < 10) {
+      return currentSum + totalSum;
+    }
+    // currentSumが1桁でない場合、再帰的に処理を続ける
+    return helper(currentSum, 0, currentSum + totalSum);
+  }
+  // digitsを分解して再帰的に処理
+  return helper(Math.floor(digits / 10), (digits % 10) + currentSum, totalSum);
+}
+
+function recursiveDigitsAdded(digits) {
+  return helper(digits, 0, 0);
+}
+```
+
+このコードは既にシンプルで読みやすいですが、変数名やコメントを追加することで、さらに理解しやすくなります。全体的に良い実装です。
