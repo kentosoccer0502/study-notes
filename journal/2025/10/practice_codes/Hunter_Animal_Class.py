@@ -20,21 +20,27 @@ class Hunter:
         return self.strength * self.weightKg
     
     def canCaptureAnimal(self, animal) -> bool:
-        if self.weightKg >= animal.weightKg and self.cageCubicMeters >= animal.heightM and not animal.predetar:
-            return True
+        return (
+            self.strengthKg() >= animal.weightKg 
+            and self.cageCubicMeters >= animal.heightM
+            and not animal.predetar
+            )
     
     def attemptToDomesticate(self, animal) -> bool:
-        if self.strength > animal.weightKg * 2:
+        if self.strengthKg() > animal.weightKg * 2:
             animal.domesticate()
             return True
+        return False
 
 
-def capturedAnimals(hunter, animals: []) -> []:
-    "WIP"
-    return None
-def domesticateTheAnimals(hunter, animals: []) -> []:
-    "WIP"
-    return None
+def capturedAnimals(hunternator, animals: []) -> None:
+    for animal in animals:
+        if hunternator.canCaptureAnimal(animal):
+            print(animal.species)
+
+def domesticateTheAnimals(hunternator, animals: []) -> None:
+    for animal in animals:
+        hunternator.attemptToDomesticate(animal)
 
 tiger = Animal("Tiger", 290, 2.6, True)
 cow = Animal("Cow", 1134, 1.5, False)
@@ -44,8 +50,6 @@ hunternator = Hunter("Hunternator", 124.73, 1.85, 15, 3)
 
 animals = [tiger, cow, snake, cat]
 
-print(capturedAnimals(hunternator, animals))
-
-print(domesticateTheAnimals(hunternator, animals))
-
-print(capturedAnimals(hunternator, animals))
+capturedAnimals(hunternator, animals)
+domesticateTheAnimals(hunternator, animals)
+capturedAnimals(hunternator, animals)
