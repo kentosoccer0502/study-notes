@@ -1,0 +1,48 @@
+{
+  // ===== 全体共通 =====
+  "editor.formatOnSave": true, // 保存時に自動整形
+  "editor.formatOnPaste": false, // 貼り付け時は整形しない
+  "editor.formatOnType": false, // タイプ中には整形しない
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトをPrettierに
+
+  // ===== Markdown =====
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+
+  // ===== Python =====
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter", // Black推奨
+    "editor.formatOnSave": true
+  },
+  "python.formatting.provider": "none", // 旧設定を無効化
+  "black-formatter.args": ["--line-length", "88"],
+
+  // ===== TypeScript =====
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // ===== JavaScript =====
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // ===== Prettier共通設定 =====
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.bracketSpacing": true,
+  "python.analysis.typeCheckingMode": "standard"
+}
