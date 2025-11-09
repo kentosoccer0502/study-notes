@@ -13,3 +13,6 @@ def twoSum(intArr: List[int], sumInt: int) -> List[int]:
         return []
     # convert the chosen tuple to a list to match the declared return type
     return list(min(pairs, key=lambda x: min(x)))
+
+
+print(twoSum([1, 2, 3, 4], 5))
