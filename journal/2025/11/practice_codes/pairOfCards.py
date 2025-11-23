@@ -1,5 +1,3 @@
-# WIP
-
 from typing import List, Dict
 
 VALUES: List[str] = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
@@ -12,13 +10,23 @@ def winnerPairOfCards(player1: List[str], player2: List[str]) -> str:
     player2_cards: Dict[str, int] = count_cards(player2, VALUES)
     print(player1_cards)
     print(player2_cards)
+
+    # 複数枚持っているカードを優先して強さを比較
+    for count in (4, 3, 2):
+        for value in VALUES:
+            if player1_cards[value] == count or player2_cards[value] == count:
+                if player1_cards[value] > player2_cards[value]:
+                    return "player1"
+                elif player1_cards[value] < player2_cards[value]:
+                    return "player2"
+
     for value in VALUES:
         if player1_cards[value] > player2_cards[value]:
             return "player1"
         elif player1_cards[value] < player2_cards[value]:
             return "player2"
-        else:
-            return "draw"
+
+    return "draw"
 
 
 def count_cards(hand: List[str], values: List[str]) -> Dict[str, int]:
