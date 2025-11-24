@@ -1,3 +1,6 @@
+# 選択ソート
+# 計算量: 最悪O(n^2)
+
 from typing import List
 
 
