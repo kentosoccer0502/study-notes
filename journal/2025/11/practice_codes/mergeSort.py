@@ -9,24 +9,24 @@ def mergeSort(arr: List[int]) -> List[int]:
     left = mergeSort(arr[:center])
     right = mergeSort(arr[center:])
 
-    l_i = r_i = k = 0
-    while len(right) > r_i and len(left) > l_i:
-        if left[l_i] <= right[r_i]:
-            arr[k] = left[l_i]
-            l_i += 1
+    left_i = right_i = arr_i = 0
+    while left_i < len(left) and right_i < len(right):
+        if left[left_i] <= right[right_i]:
+            arr[arr_i] = left[left_i]
+            left_i += 1
         else:
-            arr[k] = right[r_i]
-            r_i += 1
-        k += 1
+            arr[arr_i] = right[right_i]
+            right_i += 1
+        arr_i += 1
 
-    while len(left) > l_i:
-        arr[k] = left[l_i]
-        l_i += 1
-        k += 1
-    while len(right) > r_i:
-        arr[k] = right[r_i]
-        r_i += 1
-        k += 1
+    while left_i < len(left):
+        arr[arr_i] = left[left_i]
+        arr_i += 1
+        left_i += 1
+    while right_i < len(right):
+        arr[arr_i] = right[right_i]
+        arr_i += 1
+        right_i += 1
 
     return arr
 
