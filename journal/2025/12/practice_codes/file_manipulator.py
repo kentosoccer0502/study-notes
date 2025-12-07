@@ -1,15 +1,19 @@
-# reverse inputpath outputpath:
+# -------------------------------------------
+#  ファイル操作プログラム
+# -------------------------------------------
+# # コマンド一覧
+# - reverse inputpath outputpath:
 #   inputpath にあるファイルを受け取り、outputpath に inputpath の内容を逆にした新しいファイルを作成します。
-# copy inputpath outputpath:
+# - copy inputpath outputpath:
 #   inputpath にあるファイルのコピーを作成し、outputpath として保存します。
-# duplicate-contents inputpath n:
+# - duplicate-contents inputpath n:
 #   inputpath にあるファイルの内容を読み込み、その内容を複製し、複製された内容を inputpath に n 回複製します。
-# replace-string inputpath needle newstring:
+# - replace-string inputpath needle newstring:
 #   inputpath にあるファイルの内容から文字列 'needle' を検索し、'needle' の全てを 'newstring' に置き換えます。
+# - markdown inputfile outputfile
+#   マークダウンを HTML に変換します。inputfile は .md ファイルへのパス、
+#   出力パスはプログラムを実行した後に作成される .html です。
 #
-# 例えば、python3 file_manipulator.py reverse python_practice/data/test.txt python_practice/dump/test-dumb.txt
-# というコマンドに対して、 argv は以下のリストを持つことになります。
-# ['file_manipulator.py','reverse','python_practice/data/test.txt','python_practice/dump/test-dumb.txt']
 import sys
 import os
 
@@ -75,6 +79,27 @@ def main():
                 contents = f.read()
             with open(inputpath, "w") as f:
                 f.write(contents.replace(needle, new_string))
+
+        elif command == "markdown":
+            if len(sys.argv) < 4:
+                print("Usage: python file_manipulator.py markdown inputfile outputfile")
+                sys.exit(1)
+            outputfile = sys.argv[3]
+
+            _, ext = os.path.splitext(inputpath)
+            if ext.lower() != ".md":
+                print(f"{inputpath}: inputfile must be .md file")
+                sys.exit(1)
+
+            import markdown as mk
+
+            with open(inputpath, "r") as f:
+                contents = f.read()
+            with open(outputfile, "w") as f:
+                f.write(mk.markdown(contents))
+
+            root, ext = os.path.splitext(outputfile)
+            outputfile = root + ".html"
 
         else:
             print(f"Error: 未知のコマンド '{command}'")
