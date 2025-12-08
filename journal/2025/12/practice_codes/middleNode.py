@@ -26,3 +26,14 @@ def custom_round(number):
         return math.ceil(number)
     else:
         return math.floor(number)
+
+
+def middleNodev2(head):
+    slow = head  # 通常の速度で進む
+    fast = head  # 2倍の速度で進む
+
+    while fast is not None and fast.next is not None:
+        fast = fast.next.next  # 次の次のノードへ
+        slow = slow.next  # 次のノードへ
+
+    return slow
