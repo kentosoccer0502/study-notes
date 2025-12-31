@@ -7,19 +7,14 @@ class SinglyLinkedListNode:
 def insertNodeInSorted(head: SinglyLinkedListNode, data: int) -> SinglyLinkedListNode:
     current_node = head
     new_node = SinglyLinkedListNode(data)
-    prev_node = None
 
     while current_node is not None:
         if current_node.data > new_node.data:
-            if prev_node is None:
-                new_node.next = head
-                return new_node
             temp = prev_node.next
-            prev_node.next = new_node
+            current_node.next = new_node
             new_node.next = temp
             return head
         prev_node = current_node
         current_node = current_node.next
 
-    prev_node.next = new_node
     return head
