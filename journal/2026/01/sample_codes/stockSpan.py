@@ -1,11 +1,20 @@
 def stockSpan(stocks):
-    stack = []  # stocksのindex
-    results = []  # counter
+    """
+    与えられた株価リスト `stocks` に対して、各日の株価スパンを計算して返す。
+    株価スパン = その日を含めて、連続して過去にさかのぼり現在の株価以下であった日数。
+    例: [30,50,60] -> [1,2,3]
+    """
+
+    stack = []  # インデックスを保持するスタック（単調減少スタック）
+    results = []  # 各日ごとのスパンを格納するリスト
 
     for i in range(len(stocks)):
         current = stocks[i]
-        counter = 1
+        counter = 1  # 自分自身を含めるため初期値は1
 
+        # スタックが空でなく、スタックトップの日の株価が現在の株価より小さい間は
+        # その日のスパン（resultsに格納済み）を現在のカウンターに加算し、スタックから取り出す。
+        # これにより過去の連続する小さい値をまとめて飛ばせる（計算は線形時間）
         while len(stack) > 0 and stocks[stack[-1]] < current:
             counter += results[stack.pop()]
 
