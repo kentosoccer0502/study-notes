@@ -9,6 +9,7 @@ class BinaryTree {
     this.right = right;
   }
 
+  // 間順操作（in-order traversal）（LNR)
   // 'printInOrder'関数を定義します。この関数は、二分木の各ノードのデータを間順走査で表示します。
   printInOrder() {
     // 'inOrderWalk'関数を使って、二分木を間順走査します。起点となるノードは二分木のルートノードとします。
@@ -29,6 +30,44 @@ class BinaryTree {
       // 最後に、右部分木を間順走査します。これも再帰的にこの関数を呼び出すことで、巡回を行います。
       this.inOrderWalk(tRoot.right);
     }
+  }
+
+  // 前順（pre-order）（NLR）
+  preOrderWalk(tRoot: BinaryTree | null) {
+    if (tRoot != null) {
+      process.stdout.write(tRoot.data + ' ');
+      this.preOrderWalk(tRoot.left);
+      this.preOrderWalk(tRoot.right);
+    }
+  }
+  printPreOrder() {
+    this.preOrderWalk(this);
+    console.log('');
+  }
+  // 後順（post-order）（LRN）
+  postOrderWalk(tRoot: BinaryTree | null) {
+    if (tRoot != null) {
+      this.postOrderWalk(tRoot.left);
+      this.postOrderWalk(tRoot.right);
+      process.stdout.write(tRoot.data + ' ');
+    }
+  }
+  printPostOrder() {
+    this.postOrderWalk(this);
+    console.log('');
+  }
+
+  // 逆間順（reverse-order）（RNL）
+  reverseOrderWalk(tRoot: BinaryTree | null) {
+    if (tRoot != null) {
+      this.reverseOrderWalk(tRoot.right);
+      process.stdout.write(tRoot.data + ' ');
+      this.reverseOrderWalk(tRoot.left);
+    }
+  }
+  printReverseOrder() {
+    this.reverseOrderWalk(this);
+    console.log('');
   }
 }
 
