@@ -43,7 +43,7 @@ function bstDelete(root: BinaryTree<number> | null, key: number): BinaryTree<num
   }
 
   // 4. 子2つ
-  const minNode = findMinNode(root.right);
+  const minNode = findMinNode(root.right!);
 
   // 値コピー
   root.data = minNode.data;
