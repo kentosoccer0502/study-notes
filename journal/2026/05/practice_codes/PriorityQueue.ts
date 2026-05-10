@@ -69,6 +69,23 @@ class PriorityQueue {
 
     return popped;
   }
+  // ここから開発してください。
+  insert(x: number): void {
+    // 一旦末尾に追加
+    this.maxHeap.push(x);
+
+    let i = this.maxHeap.length - 1;
+    let parent = HeapLibrary.parent(i);
+
+    // 追加した値が親より大きい場合は、親と入れ替える
+    while (parent >= 0 && this.maxHeap[parent] < x) {
+      let temp = this.maxHeap[i];
+      this.maxHeap[i] = this.maxHeap[parent];
+      this.maxHeap[parent] = temp;
+      i = parent;
+      parent = HeapLibrary.parent(i);
+    }
+  }
 }
 
 const pq = new PriorityQueue([2, 3, 43, 2, 53, 6, 75, 10]);
