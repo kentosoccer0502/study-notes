@@ -1,18 +1,20 @@
-class LambdaMachine {
-  handlers: Record<string, (x: number, y: number) => number> = {};
+type LamdaFunction = (x: number, y: number) => number;
 
-  insert(key: string, fn: (x: number, y: number) => number): void {
+class LambdaMachine {
+  handlers: Record<string, LamdaFunction> = {};
+
+  insert(key: string, fn: LamdaFunction): void {
     this.handlers[key] = fn;
   }
 
-  retrieve(key: string): (x: number, y: number) => number {
+  retrieve(key: string): LamdaFunction {
     return this.handlers[key];
   }
 }
 
-const pythagora = (x: number, y: number): number => Math.floor((x ** 2 + y ** 2) ** (1 / 2));
-const addition = (x: number, y: number): number => x + y;
-const multiplication = (x: number, y: number): number => x * y;
+const pythagora: LamdaFunction = (x: number, y: number) => Math.floor((x ** 2 + y ** 2) ** (1 / 2));
+const addition: LamdaFunction = (x: number, y: number) => x + y;
+const multiplication: LamdaFunction = (x: number, y: number) => x * y;
 
 const lambdaMachine = new LambdaMachine();
 
