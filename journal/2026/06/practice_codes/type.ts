@@ -14,3 +14,8 @@ if (isStringOrNumber(something)) {
   // 両方の型で利用可能な toString() を安全に呼び出せる
   console.log(something.toString());
 }
+
+type T = Readonly<{
+  name: string;
+  age: number;
+}>;
