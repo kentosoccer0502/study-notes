@@ -13,3 +13,14 @@ function gcd(a: number, b: number): number {
   if (b === 0) return a;
   return gcd(b, a % b);
 }
+
+// 別解 -----------------------
+function gcdOfStringsV2(str1: string, str2: string): string {
+  const repeatLength = gcd(str1.length, str2.length);
+  if (str1 + str2 === str2 + str1) return str1.slice(0, repeatLength);
+  return '';
+}
+
+const gcdV2 = (a: number, b: number) => {
+  return a % b === 0 ? b : gcd(b, a % b);
+};
