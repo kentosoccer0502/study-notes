@@ -22,7 +22,7 @@
     "declarationMap": true,
 
     // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": false,
+    "noUncheckedIndexedAccess": false, // 配列・オブジェクトのインデックスアクセスの undefined を厳密に見ないようにしている。コーディング試験向けに型チェックを緩くするため。
     "exactOptionalPropertyTypes": true,
 
     // Style Options
