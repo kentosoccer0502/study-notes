@@ -45,6 +45,21 @@ function canPlaceFlowersV2(flowerbed: number[], n: number): boolean {
   return count >= n;
 }
 
+function canPlaceFlowersV3(flowerbed: number[], n: number): boolean {
+  if (n === 0) return true;
+  let count = 0;
+
+  for (let i = 0; i < flowerbed.length; i++) {
+    if ((flowerbed[i - 1] ?? 0) === 0 && flowerbed[i] === 0 && (flowerbed[i + 1] ?? 0) === 0) {
+      count += 1;
+      i++;
+      if (count >= n) return true;
+    }
+  }
+
+  return count >= n;
+}
+
 function canPlaceFlowers_false(flowerbed: number[], n: number): boolean {
   // 0の数がn + 2ないとダメっぽい
   // 0が連続されていないとダメ
