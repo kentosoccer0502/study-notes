@@ -2,10 +2,10 @@
 function compress(chars: string[]): number {
   let read = 0;
   let write = 0;
-  let count = 0;
   while (read < chars.length) {
     let char = chars[read];
-    while (char === chars[read]) {
+    let count = 0;
+    while (chars[read] === char) {
       count++;
       read++;
     }
@@ -17,7 +17,6 @@ function compress(chars: string[]): number {
         write++;
       }
     }
-    count = 0;
   }
   return write;
 }
