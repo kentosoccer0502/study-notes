@@ -43,3 +43,20 @@ function maxVowelsV2(s: string, k: number): number {
   }
   return answer;
 }
+
+function maxVowelsV3(s: string, k: number): number {
+  const vowels = 'aeiou';
+  let count = 0;
+  for (let i = 0; i < k; i++) {
+    if (vowels.includes(s[i])) count++;
+  }
+  let answer = count;
+  if (answer === k) return answer;
+  for (let i = k; i < s.length; i++) {
+    if (vowels.includes(s[i - k])) count--;
+    if (vowels.includes(s[i])) count++;
+    answer = Math.max(answer, count);
+    if (answer === k) return answer;
+  }
+  return answer;
+}
